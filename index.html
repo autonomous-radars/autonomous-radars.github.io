@@ -1,1 +1,271 @@
-Hello World
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="Radars for Autonomous Driving: A Review of Deep Learning Methods and Challenges">
+    <meta name="keywords" content="early sensor fusion, radar, deep learning, autonomous driving, perception, occupancy flow, uncertainty estimation">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Radars for Autonomous Driving: A Review of Deep Learning Methods and Challenges</title>
+    <!-- Google Tag Manager -->
+    <!-- <script>
+        (function(w, d, s, l, i) {
+            w[l] = w[l] || [];
+            w[l].push({
+                'gtm.start': new Date().getTime(),
+                event: 'gtm.js'
+            });
+            var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s),
+                dl = l != 'dataLayer' ? '&l=' + l : '';
+            j.async = true;
+            j.src =
+                'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+            f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-57GR669');
+    </script> -->
+    <!-- End Google Tag Manager -->
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GTM-57GR669"></script>
+    <!-- <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'GTM-57GR669');
+    </script> -->
+
+    <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+    <link rel="stylesheet" href="./static/css/bulma.min.css">
+    <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+    <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+    <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+    <link rel="stylesheet" href="./static/css/index.css">
+    <link rel="icon" href="./static/images/favicon.jpg">
+
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
+    <script src="./static/js/jquery-3.6.4.min.js"></script>
+    <script defer src="./static/js/fontawesome.all.min.js"></script>
+    <script src="./static/js/bulma-carousel.min.js"></script>
+    <script src="./static/js/bulma-slider.min.js"></script>
+    <script src="./static/js/lazy.js"></script>
+    <script src="./static/js/faster.js"></script>
+    <script src="./static/js/index.js"></script>
+</head>
+
+<body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-57GR669"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <section class="hero">
+        <div class="hero-body">
+            <div class="container is-max-desktop">
+                <div class="columns is-centered">
+                    <div class="column has-text-centered">
+                        <h1 class="title is-2 publication-title">Radars for Autonomous Driving: A Review of Deep Learning Methods and Challenges</h1>
+                        <div class="is-size-5 publication-authors">
+                            <span class="author-block">
+              <a href="https://www.linkedin.com/in/arvind-srivastav/">Arvind Srivastav</a><sup>1</sup>, </span>
+                            <span class="author-block">
+              <a href="https://www.linkedin.com/in/soumyajit-mandal-8090311/">Soumyajit Mandal</a><sup>2</sup>, </span>
+                        </div>
+
+                        <div class="is-size-5 publication-authors">
+                            <span class="author-block"><sup>1</sup>Zoox, Inc. &nbsp; </span>
+                            <span class="author-block"><sup>2</sup>Brookhaven National Laboratory&nbsp; </span>
+
+                        </div>
+
+                        <div class="column has-text-centered">
+                            <div class="publication-links">
+                                <!-- PDF Link. -->
+                                <span class="link-block">
+                <a href="https://arxiv.org/pdf/2011.12948"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                                <span>Paper</span>
+                                </a>
+                                </span>
+                                <span class="link-block">
+                <a href="https://arxiv.org/abs/2011.12948"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                                <span>arXiv</span>
+                                </a>
+                                </span>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="hero teaser">
+        <div class="container is-max-desktop">
+            <div class="hero-body">
+                <img id="teaser" src="./static/images/radar-applications.png" alt="Teaser Image" height="100%" />
+                <h5 class="content has-text-centered">
+                    <span class="dnerf">Autonomous</span> radars can measure agent velocity, detect occluded or distant objects, and resist adverse weather. However, their sparse low-resolution, cluttered, and uncertain data makes object detection a significant
+                    challenge
+                </h5>
+            </div>
+        </div>
+    </section>
+    <!-- <br> -->
+    <section class="section">
+        <div class="container is-max-desktop">
+            <!-- Abstract. -->
+            <div class="columns is-centered has-text-centered">
+                <div class="column is-four-fifths">
+                    <h2 class="title is-3">Abstract</h2>
+                    <div class="content has-text-justified">
+                        <p>
+                            Radar is a key component of the suite of perception sensors used for safe and reliable navigation of autonomous vehicles. Its unique capabilities include high-resolution velocity imaging, detection of agents in occlusion and over long ranges, and robust
+                            performance in adverse weather conditions. However, the usage of radar data presents some challenges: it is characterized by low resolution, sparsity, clutter, high uncertainty, and lack of good datasets. These challenges have
+                            limited radar deep learning research. As a result, current radar models are often influenced by lidar and vision models, which are focused on optical features that are relatively weak in radar data, thus resulting in under-utilization
+                            of radar’s capabilities and diminishing its contribution to autonomous perception. This review seeks to encourage further deep learning research on autonomous radar data by 1) identifying key research themes, and 2) offering
+                            a comprehensive overview of current opportunities and challenges in the field. Topics covered include early and late fusion, occupancy flow estimation, uncertainty modeling, and multipath detection. The paper also discusses
+                            radar fundamentals and data representation, presents a curated list of recent radar datasets, and reviews state-of-the-art lidar and vision models relevant for radar research.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <br>
+        </div>
+    </section>
+    <!-- <br> -->
+    <section class="section">
+        <div class="container is-max-desktop">
+            <!-- Radar Data Formats. -->
+            <div class="columns is-centered has-text-centered">
+                <div class="column is-four-fifths">
+                    <h2 class="title is-3">Radar Data Formats</h2>
+                    <div class="hero-body">
+                        <img id="teaser" src="./static/images/data-formats.png" alt="Data Formats" height="100%" />
+                        <p class="content has-text-centered">
+                            Among data formats like range-azimuth-Doppler tensor (a), range-azimuth heatmap (b), and micro-Doppler spectrogram (d), radar point cloud (c) is the most popular due to its compact information-rich data representation.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <!-- </div> -->
+            <!-- </section> -->
+            <!-- <br> -->
+            <!-- <section class="section"> -->
+            <!-- <div class="container is-max-desktop"> -->
+            <!-- Radar Datasets. -->
+            <div class="columns is-centered has-text-centered">
+                <div class="column is-four-fifths">
+                    <h2 class="title is-3">Important Radar Datasets</h2>
+                    <div class="hero-body">
+                        <img id="teaser" src="./static/images/datasets.png" alt="Datasets" height="100%" />
+                        <p class="content has-text-centered">
+                            We provide a curated list of recent, high-quality radar datasets, focusing particularly on those that contain data from new-generation 4D radars.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <!-- </div> -->
+            <!-- </section> -->
+            <!-- <br> -->
+            <!-- <section class="section"> -->
+            <!-- <div class="container is-max-desktop"> -->
+            <!-- Perception Overview. -->
+            <div class="columns is-centered has-text-centered">
+                <div class="column is-four-fifths">
+                    <h2 class="title is-3">Radar's Role in Perception</h2>
+                    <div class="hero-body">
+                        <img id="teaser" src="./static/images/pcp-overview.png" alt="Perception" height="100%" />
+                        <p class="content has-text-centered">
+                            Radar models have struggled to make a difference to perception in traditional late fusion detection-based tracking approaches (a). Newer paradigms, such as early sensor fusion (b) and occupancy estimation (c), promise to enhance radar’s contribution to
+                            perception significantly.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <!-- </div> -->
+            <!-- </section> -->
+            <!-- <br> -->
+            <!-- <section class="section"> -->
+            <!-- <div class="container is-max-desktop"> -->
+            <!-- Radar Deep Learning Models. -->
+            <div class="columns is-centered has-text-centered">
+                <div class="column is-four-fifths">
+                    <h2 class="title is-3">Radar Deep Learning Models</h2>
+                    <div class="hero-body">
+                        <img id="teaser" src="./static/images/radar-models.png" alt="Radar Deep Learning Models" height="100%" />
+                        <p class="content has-text-centered">
+                            We provide a modular detector framework for radar deep learning models, where components from state-of-the-art models can be selectively incorporated at relevant stages with only minor modifications.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <!-- </div> -->
+            <!-- </section> -->
+            <!-- <br> -->
+            <!-- <section class="section"> -->
+            <!-- <div class="container is-max-desktop"> -->
+            <!-- Early Sensor Fusion with Radar. -->
+            <div class="columns is-centered has-text-centered">
+                <div class="column is-four-fifths">
+                    <h2 class="title is-3">Early Sensor Fusion with Radar</h2>
+                    <div class="hero-body">
+                        <img id="teaser" src="./static/images/cr-fusion.png" alt="Early Sensor Fusion with Radar" height="100%" />
+                        <p class="content has-text-centered">
+                            There are two popular approaches to camera-radar early fusion: (a) fusion in the perspective view, which enhances depth estimation of camera detections and adds object velocity to those detections; and (b) fusion the bird’s-eye view (BEV), which infers
+                            joint detections from the BEV features of camera and radar.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <!-- </div> -->
+            <!-- </section> -->
+            <!-- <br> -->
+            <!-- <section class="section"> -->
+            <!-- <div class="container is-max-desktop"> -->
+            <!-- Noise in Radar Data. -->
+            <div class="columns is-centered has-text-centered">
+                <div class="column is-four-fifths">
+                    <h2 class="title is-3">Noise in Radar Data</h2>
+                    <div class="hero-body">
+                        <img id="teaser" src="./static/images/multipath.png" alt="Noise in Radar Data" height="100%" />
+                        <p class="content has-text-centered">
+                            While developing deep learning models, it's also crucial to consider the noise and uncertainty present in radar data. In this context, we highlight three significant multipath phenomena that contribute to noise in radar data: (a) double bounce, (b) underbody
+                            reflections, and (c) mirrored ghost detections.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <br>
+        </div>
+    </section>
+    <!-- <br> -->
+    <footer class="footer">
+        <div align="center" class="container">
+            <div class="columns is-centered">
+                <div class="content">
+                    This website is borrowed from <a href="https://github.com/nerfies/nerfies.github.io">nerfies</a>.
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>
